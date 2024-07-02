@@ -4,5 +4,10 @@
 
 {% block body %}
     <h1>Liste des entreprises</h1>
+    
+    
+    {% for entreprise in entreprises %}
+        {{ entreprise ~ ' (' ~ entreprise.cp ~ ' ' ~ entreprise.ville ~ ')' }}<br> <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
+    {% endfor %} <!-- Ici je peux directement placer l'objet entreprise car j'ai créé un __toString() qui renvoie la raison sociale -->
 
 {% endblock %}
