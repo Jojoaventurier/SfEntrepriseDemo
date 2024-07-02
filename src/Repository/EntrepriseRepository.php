@@ -16,6 +16,9 @@ class EntrepriseRepository extends ServiceEntityRepository
         parent::__construct($registry, Entreprise::class);
     }
 
+
+// Un certain nombre de fonctions sont crées de bases mais n'apparaissent pas ici. Il s'agit de :
+
 //    /**
 //     * @return Entreprise[] Returns an array of Entreprise objects
 //     */
@@ -23,9 +26,9 @@ class EntrepriseRepository extends ServiceEntityRepository
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
+//            ->setParameter('val', $value)         (pour une requête préparée, équivalent du prepare() et execute())
 //            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
+//            ->setMaxResults(10)                   (équivalent du limit en sql)
 //            ->getQuery()
 //            ->getResult()
 //        ;
