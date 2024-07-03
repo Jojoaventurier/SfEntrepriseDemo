@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EmployeController extends AbstractController
 {
     #[Route('/employe', name: 'app_employe')]
-    // public function index(EntityManagerInterface $entityManager): Response
+    
     public function index(EmployeRepository $employeRepository): Response
     {
         
