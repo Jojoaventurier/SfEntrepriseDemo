@@ -9,7 +9,7 @@
     <p>
         Adresse :    {{ entreprise.adresseComplete }}<br>
         {# Date de création : {{ entreprise.dateCreationFr }} #}
-        Date de création : {{ entreprise.dateCreation | date("d-mp-Y") }} <!-- On se sert ici d'un filtre de twig pour convertir dateCreation (obj datetime) en string -->
+        Date de création : {{ entreprise.dateCreation | date("d.m.Y") }} <!-- On se sert ici d'un filtre de twig pour convertir dateCreation (obj datetime) en string -->
     </p>
    
 {% endblock %}
