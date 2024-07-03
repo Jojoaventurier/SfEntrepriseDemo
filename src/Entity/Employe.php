@@ -114,4 +114,9 @@ class Employe
 
         return $this;
     }
+
+    public function getAge(): ?string
+    {
+
+    }
 }
