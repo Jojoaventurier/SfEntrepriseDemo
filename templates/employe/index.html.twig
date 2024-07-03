@@ -6,7 +6,7 @@
     <h1>Liste des employés</h1>
 
     {% for employe in employes %}
-        {{ employe }} ({{ employe.entreprise ~ ' ' }})<br> <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
+        <a href="">{{ employe }}</a> ({{ employe.entreprise ~ ' ' }})<br> <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
     {% endfor %}            <!-- employe.entreprise.raisonSociale -->
 
 {% endblock %}
