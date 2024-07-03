@@ -14,7 +14,9 @@ class EmployeController extends AbstractController
     public function index(EmployeRepository $employeRepository): Response
     {
         
-        $employes = $employeRepository->findAll(); 
+        //$employes = $employeRepository->findAll(); 
+        // SELECT * FROM employe ORDER BY nom ASC
+        $employes = $employeRepository->findBy([], ['nom' => 'ASC']);
         return $this->render('employe/index.html.twig', [  // méthode qui fait le lien entre le controlleur et la vue, Note : on peut également renvoyer une vue sans transmettre de 'data'
             'employes' => $employes
         ]);
