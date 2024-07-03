@@ -23,7 +23,7 @@ class EntrepriseController extends AbstractController
             'entreprises' => $entreprises
         ]);
     }
-
+                            
     #[Route('/entreprise/{id}', name: 'show_entreprise')]
     public function show(Entreprise $entreprise): Response // ici avec cette syntaxe, symfony est capable d'aller récupérer l'id de l'objet entreprise
     {
