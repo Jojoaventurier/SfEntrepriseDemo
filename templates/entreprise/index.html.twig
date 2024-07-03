@@ -7,7 +7,7 @@
     
     
     {% for entreprise in entreprises %}
-        <a href="">{{ entreprise ~ ' (' ~ entreprise.cp ~ ' ' ~ entreprise.ville ~ ')' }}</a><br> <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
+        <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{ entreprise ~ ' (' ~ entreprise.cp ~ ' ' ~ entreprise.ville ~ ')' }}</a><br> <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
     {% endfor %} <!-- Ici je peux directement placer l'objet entreprise car j'ai créé un __toString() qui renvoie la raison sociale -->
 
 {% endblock %}
