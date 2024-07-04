@@ -41,6 +41,7 @@ class EmployeType extends AbstractType
                 ]
             ])
             ->add('ville', TextType::class, [
+                'required' => false, // permet que le champs ne soit pas obligatoire au niveau du html
                 'attr' => [ // permet d'ajouter un attribut à mon TypeText
                     'class' => 'form-control' // ici on ajoute une classe 'form-control' utilisée de bootstrap
                 ]
