@@ -21,6 +21,7 @@ class EntrepriseController extends AbstractController
         // $entreprises = $entrepriseRepository->findAll();
         // SELECT * FROM entreprise ORDER BY raisonSociale ASC
         $entreprises = $entrepriseRepository->findBy([], ["raisonSociale" => "ASC"]); 
+        
         return $this->render('entreprise/index.html.twig', [  // méthode qui fait le lien entre le controlleur et la vue, Note : on peut également renvoyer une vue sans transmettre de 'data'
             'entreprises' => $entreprises
         ]);
