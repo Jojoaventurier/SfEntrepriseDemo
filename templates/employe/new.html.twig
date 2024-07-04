@@ -3,7 +3,12 @@
 {% block title %}Ajouter une employe{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un employe</h1>
+
+{% if edit %}
+    <h1>Editer un employé</h1> 
+{% else %}
+    <h1>Ajouter un employé</h1>
+{% endif %}
     
     {# {{ form(formAddEmploye) }} <!-- On récupère les données envoyées par le EntrepriseController (fonction new())--> #}
     {{ form_start(formAddEmploye) }}

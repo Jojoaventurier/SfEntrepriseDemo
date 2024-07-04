@@ -8,7 +8,9 @@
     <a href="{{ path('new_employe')}}" class="btn btn-success">Ajouter un employé</a><br>
 
     {% for employe in employes %}
-        <a href="{{ path('show_employe', {'id': employe.id}) }}">{{ employe }}</a> ({{ employe.entreprise ~ ' ' }})<br> <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
+        <a href="{{ path('show_employe', {'id': employe.id}) }}">{{ employe }}</a> ({{ employe.entreprise ~ ' ' }}) <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
+        <a class="btn btn-warning" href="{{ path('edit_employe', {'id': employe.id}) }}">Edit</a>   
+        <a class="btn btn-danger" href="{{ path('delete_employe', {'id': employe.id}) }}">Supp</a><br>    
     {% endfor %}            <!-- employe.entreprise.raisonSociale -->
 
 {% endblock %}

@@ -53,6 +53,15 @@ class EntrepriseController extends AbstractController
             'edit' => $entreprise->getId() // va renvoyer false si il ne trouve pas d'id, sinon il va récupérer l'id de l'entreprise que je souhaite modifier. On va pouvoir utiliser cette variable dans la vue 
         ]);
     }
+
+    #[Route('/entreprise/{id}/delete', name: 'delete_entreprise')]
+    public function delete(Entreprise $entreprise, EntityManagerInterface $entityManager) 
+    {
+        $entityManager->remove($entreprise);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_entreprise');
+    }
     
     #[Route('/entreprise/{id}', name: 'show_entreprise')]
     public function show(Entreprise $entreprise): Response // ici avec cette syntaxe, symfony est capable d'aller récupérer l'id de l'objet entreprise

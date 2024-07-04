@@ -27,10 +27,12 @@ class EmployeController extends AbstractController
     }
 
     #[Route('/employe/new', name: 'new_employe')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response // il faut penser à importer la classe request (depuis httpfoundation)
+    #[Route('/employe/{id}/edit', name: 'edit_employe')]
+    public function new_edit(Employe $employe = null, Request $request, EntityManagerInterface $entityManager): Response // il faut penser à importer la classe request (depuis httpfoundation)
     {
-        $employe = new employe();
-        
+        if(!$employe) {
+            $employe = new employe();
+        }
         $form = $this->createForm(EmployeType::class, $employe); // il faut bien penser à importer la classe EmployeType
         
         $form->handleRequest($request); // on prend en charge la requête demandée
@@ -46,7 +48,17 @@ class EmployeController extends AbstractController
 
         return $this->render('employe/new.html.twig', [
             'formAddEmploye' => $form,
+            'edit' => $employe->getId()
         ]);
+    }
+
+    #[Route('/employe/{id}/delete', name: 'delete_employe')]
+    public function delete(Employe $employe, EntityManagerInterface $entityManager) 
+    {
+        $entityManager->remove($employe);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_employe');
     }
 
     #[Route('/employe/{id}', name: 'show_employe')]

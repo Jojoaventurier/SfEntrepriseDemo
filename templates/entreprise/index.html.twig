@@ -9,7 +9,8 @@
     
     {% for entreprise in entreprises %}     <!--On récupère en dessous l'id par entreprise.id que l'on donne en paramètre pour 'id', qui est l'"id" qu'on a spécifié en paramètre de la route de la méthode -->
         <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{ entreprise ~ ' (' ~ entreprise.cp ~ ' ' ~ entreprise.ville ~ ')' }}</a> <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
-        <a class="btn btn-warning" href="{{ path('edit_entreprise', {'id': entreprise.id}) }}">Edit</a><br>
+        <a class="btn btn-warning" href="{{ path('edit_entreprise', {'id': entreprise.id}) }}">Edit</a>
+        <a class="btn btn-danger" href="{{ path('delete_entreprise', {'id': entreprise.id}) }}">Supp</a><br> <br>
     {% endfor %} <!-- Ici je peux directement placer l'objet entreprise car j'ai créé un __toString() qui renvoie la raison sociale -->
 
 {% endblock %}
