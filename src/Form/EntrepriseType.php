@@ -15,14 +15,37 @@ class EntrepriseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('raisonSociale', TextType::class) // il faut bien penser à importer les classes utilisées, ici TextType ('import class', choisir celui dans component)
+            ->add('raisonSociale', TextType::class, [// il faut bien penser à importer les classes utilisées, ici TextType ('import class', choisir celui dans component)
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ]) 
             ->add('dateCreation', DateType::class, [ // il faut également importer la classe DateType
                 'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
-            ->add('adresse', TextType::class)
-            ->add('cp', TextType::class)
-            ->add('ville', TextType::class)
-            ->add('valider', SubmitType::class) // on ajoute le bouton SubmitType, et on importe également la classe SubmitType, les classes utilisables dans les forms sont accessibles dans la doc symfony. 
+            ->add('adresse', TextType::class, [// il faut bien penser à importer les classes utilisées, ici TextType ('import class', choisir celui dans component)
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ]) 
+            ->add('cp', TextType::class, [// il faut bien penser à importer les classes utilisées, ici TextType ('import class', choisir celui dans component)
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ]) 
+            ->add('ville', TextType::class, [// il faut bien penser à importer les classes utilisées, ici TextType ('import class', choisir celui dans component)
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ]) 
+            ->add('valider', SubmitType::class, [ // on ajoute le bouton SubmitType, et on importe également la classe SubmitType, les classes utilisables dans les forms sont accessibles dans la doc symfony. 
+                'attr' => [
+                    'class' => 'btn btn-success'
+                ]
+            ])
         ;
     }
 
