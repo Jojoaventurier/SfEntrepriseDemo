@@ -15,8 +15,16 @@
     <h3>Liste des salariés</h3>
 
     {% if entreprise.employes | length > 0 %}
-        {% for employe in entreprise.employes %} <!--j'affiche les employés de la collection d'employé de l'entreprise-->
-            <a href="{{ path('show_employe', {'id': employe.id}) }}">{{ employe }}</a><br>           <!-- doctrine permet de ne pas avoir à ajouter de requête spécifique comme on avait du faire sur le mvc maison (grâce à doctrine)-->
+        <table>
+            <thead>
+                <tr>
+                    <th>Employe</th>
+                </tr>
+            </thead>
+        </table>
+    
+    {% for employe in entreprise.employes %} <!--j'affiche les employés de la collection d'employé de l'entreprise-->
+        <a href="{{ path('show_employe', {'id': employe.id}) }}">{{ employe }}</a><br>           <!-- doctrine permet de ne pas avoir à ajouter de requête spécifique comme on avait du faire sur le mvc maison (grâce à doctrine)-->
         {% endfor %}
     {% else %}
         <p>Aucun salarié dans cette entreprise.</p>
