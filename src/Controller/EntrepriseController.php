@@ -28,12 +28,23 @@ class EntrepriseController extends AbstractController
                             
     
     #[Route('/entreprise/new', name: 'new_entreprise')]
-    public function new(Request $request): Response // il faut penser à importer la classe request (depuis httpfoundation)
+    public function new(Request $request, EntityManagerInterface $entityManager): Response // il faut penser à importer la classe request (depuis httpfoundation)
     {
-        $entreprise = new Entreprise();
-        
-        $form = $this->createForm(EntrepriseType::class, $entreprise); // il faut bien penser à importer la classe EntrepriseType
-        
+        $entreprise = new Entreprise(); //on créé un nouvel objet entreprise
+        // ici on créé le formulaire
+        $form = $this->createForm(EntrepriseType::class, $entreprise); // On créé un formulaire à partir d'une EntrepriseType (il faut bien penser à importer la classe EntrepriseType)
+        // ici il va falloir préciser le traitement des données (voir processing forms sur la doc symfony)
+        $form->handleRequest($request); // on prend en charge la requête demandée
+        if ($form->isSubmitted() && $form->isValid()) { // si le formulaire est validé, et si les données sont valides
+
+            $entreprise = $form->getData(); // alors je récupère les données du formulaire
+            //persist() et flush() équivalents du prepare et execute en PDO
+            $entityManager->persist($entreprise);
+            $entityManager->flush(); // que j'insère en BDD
+
+            return $this->redirectToRoute('app_entreprise'); // on effectue une redirection vers la page de la liste des entreprises
+        }
+        // ici on affiche le formulaire
         return $this->render('entreprise/new.html.twig', [
             'formAddEntreprise' => $form,
         ]);

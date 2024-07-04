@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Employe;
 use App\Form\EmployeType;
 use App\Repository\EmployeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -26,12 +27,23 @@ class EmployeController extends AbstractController
     }
 
     #[Route('/employe/new', name: 'new_employe')]
-    public function new(Request $request): Response // il faut penser à importer la classe request (depuis httpfoundation)
+    public function new(Request $request, EntityManagerInterface $entityManager): Response // il faut penser à importer la classe request (depuis httpfoundation)
     {
         $employe = new employe();
         
         $form = $this->createForm(EmployeType::class, $employe); // il faut bien penser à importer la classe EmployeType
         
+        $form->handleRequest($request); // on prend en charge la requête demandée
+        if ($form->isSubmitted() && $form->isValid()) { // si le formulaire est validé, et si les données sont valides
+
+            $employe = $form->getData(); // alors je récupère les données du formulaire
+            //persist() et flush() équivalents du prepare et execute en PDO
+            $entityManager->persist($employe);
+            $entityManager->flush(); // que j'insère en BDD
+
+            return $this->redirectToRoute('app_employe');
+        }
+
         return $this->render('employe/new.html.twig', [
             'formAddEmploye' => $form,
         ]);
