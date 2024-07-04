@@ -11,7 +11,7 @@
         Ville :   {% if employe.ville %} {{ employe.ville }} {% else %} Ville non renseignée {% endif %} <br>
         {# Date de création : {{ entreprise.dateCreationFr }} #}
         Date de naissance : {{ employe.dateNaissance | date("d.m.Y") }}<br> <!-- On se sert ici d'un filtre de twig pour convertir dateCreation (obj datetime) en string -->
-        Age : {{ employe.age }}<br>
+        Age : {{ employe.age }} ans<br>
         Date d'embauche : {{ employe.dateEmbauche | date("d.m.Y") }} 
      </p>
    
