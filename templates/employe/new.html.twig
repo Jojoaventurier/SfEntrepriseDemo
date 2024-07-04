@@ -5,7 +5,28 @@
 {% block body %}
     <h1>Ajouter un employe</h1>
     
-    {{ form(formAddEmploye) }} <!-- On récupère les données envoyées par le EntrepriseController (fonction new())-->
-
+    {# {{ form(formAddEmploye) }} <!-- On récupère les données envoyées par le EntrepriseController (fonction new())--> #}
+    {{ form_start(formAddEmploye) }}
+    <div class='row'>
+        <div class="col-sm">
+            {{ form_row(formAddEmploye.nom) }} <!-- on donne les noms des champs qu'on a donné dans la génération du formulaire-->
+        </div> <!--On va pouvoir ajouter du css en utilisant les classes de bootstrap-->
+        <div class="col-sm">
+            {{ form_row(formAddEmploye.prenom) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            {{ form_row(formAddEmploye.dateNaissance) }}
+        </div>
+        <div class="col-sm">
+            {{ form_row(formAddEmploye.dateEmbauche) }}
+        </div>
+    </div>
+        
+        {{ form_row(formAddEmploye.entreprise) }}
+        {{ form_row(formAddEmploye.ville) }}
+        {{ form_row(formAddEmploye.valider) }}
+    {{ form_end(formAddEmploye) }}
     
 {% endblock %}

@@ -28,9 +28,12 @@ class EntrepriseController extends AbstractController
                             
     
     #[Route('/entreprise/new', name: 'new_entreprise')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response // il faut penser à importer la classe request (depuis httpfoundation)
+    #[Route('/entreprise/{id}/edit', name: 'edit_entreprise')] // on ajoute une seconde route pour les éditions, on ajoute edit pour ne pas avoir la même route que sur la méthode show()
+    public function new_edit(Entreprise $entreprise = null, Request $request, EntityManagerInterface $entityManager): Response // il faut penser à importer la classe request (depuis httpfoundation)
     {
-        $entreprise = new Entreprise(); //on créé un nouvel objet entreprise
+        if(!$entreprise) { // si entreprise n'existe pas
+            $entreprise = new Entreprise(); //on créé un nouvel objet entreprise
+        }
         // ici on créé le formulaire
         $form = $this->createForm(EntrepriseType::class, $entreprise); // On créé un formulaire à partir d'une EntrepriseType (il faut bien penser à importer la classe EntrepriseType)
         // ici il va falloir préciser le traitement des données (voir processing forms sur la doc symfony)
@@ -47,6 +50,7 @@ class EntrepriseController extends AbstractController
         // ici on affiche le formulaire
         return $this->render('entreprise/new.html.twig', [
             'formAddEntreprise' => $form,
+            'edit' => $entreprise->getId() // va renvoyer false si il ne trouve pas d'id, sinon il va récupérer l'id de l'entreprise que je souhaite modifier. On va pouvoir utiliser cette variable dans la vue 
         ]);
     }
     

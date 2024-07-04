@@ -5,6 +5,8 @@
 {% block body %}
     <h1>Liste des employés</h1>
 
+    <a href="{{ path('new_employe')}}" class="btn btn-success">Ajouter un employé</a><br>
+
     {% for employe in employes %}
         <a href="{{ path('show_employe', {'id': employe.id}) }}">{{ employe }}</a> ({{ employe.entreprise ~ ' ' }})<br> <!-- objet.attribut pour afficher l'attribut correspondant de l'objet, twig fait automatiquement appel au getter correspondant -->
     {% endfor %}            <!-- employe.entreprise.raisonSociale -->
